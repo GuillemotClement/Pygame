@@ -21,6 +21,8 @@ def main():
       if event.type == pygame.QUIT:
         return 
       
+    player.update(dt) # ajout de la rotation
+      
     screen.fill("black") # ajoute le fond noir
     player.draw(screen) # dessine le joueur
 
