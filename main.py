@@ -12,10 +12,17 @@ def main():
 
     clock = pygame.time.Clock()
 
+    dt = 0
+
+    # creation des groupes
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    # ajoute des groupe au container Player
+    Player.containers = (updatable, drawable)
+
     # instanciation du player
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-
-    dt = 0
 
     # boucle infinie du jeu
     while True:
@@ -24,19 +31,21 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        # on viens update la position du player
-        player.update(dt)
-        # on set la couleur a noir
-        screen.fill("black")
-        # affichage du player
-        player.draw(screen)
-        # on refresh le screen
-        pygame.display.flip()
         # limit le framerate to 60 FPS
         dt = clock.tick(60) / 1000
 
+        # update la position des objets
+        updatable.update(dt)
 
+        # on set la couleur a noir
+        screen.fill("black")
 
+        # on utilise le groupe pour appliquer la methode sur chaque elements
+        for sprite in drawable:
+            sprite.draw(screen)
+
+        # on refresh le screen
+        pygame.display.flip()
 
 if __name__ == "__main__":
         main()
