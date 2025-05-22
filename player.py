@@ -18,4 +18,19 @@ class Player(CircleShape):
         return [a, b, c]
 
     def draw(self, screen):
+        # on dessine la representation du player
         pygame.draw.polygon(screen, "white", self.triangle(), 2)
+
+    # permet d'update la representation
+    def update(self, dt):
+        # on viens detecter la touche
+        keys = pygame.key.get_pressed()
+        # selon la touche on faire tourner le player
+        if keys[pygame.K_a]:
+            self.rotate(-dt)
+        if keys[pygame.K_d]:
+            self.rotate(dt)
+
+    # applique la nouvelle valeur
+    def rotate(self, dt):
+        self.rotation += PLAYER_TURN_SPEED * dt

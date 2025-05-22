@@ -24,15 +24,14 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
+        # on viens update la position du player
+        player.update(dt)
         # on set la couleur a noir
         screen.fill("black")
-
         # affichage du player
         player.draw(screen)
-
         # on refresh le screen
         pygame.display.flip()
-
         # limit le framerate to 60 FPS
         dt = clock.tick(60) / 1000
 
