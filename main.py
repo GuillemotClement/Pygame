@@ -1,5 +1,4 @@
 import pygame
-from pygame.examples.setmodescale import screen
 
 from constants import *
 
@@ -8,6 +7,10 @@ def main():
     pygame.init()
     # definition de la taille de la fenetre
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    clock = pygame.time.Clock()
+    dt = 0
+
 
     # boucle infinie du jeu
     while True:
@@ -20,6 +23,12 @@ def main():
         screen.fill("black")
         # on refresh le screen
         pygame.display.flip()
+
+        # limit le framerate to 60 FPS
+        dt = clock.tick(60) / 1000
+
+
+
 
 if __name__ == "__main__":
         main()
