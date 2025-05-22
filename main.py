@@ -1,3 +1,4 @@
+import sys
 from csv import unix_dialect
 
 import pygame
@@ -45,6 +46,11 @@ def main():
         # update la position des objets
         updatable.update(dt)
 
+        for obj in asteroids:
+            if player.check_collision(obj):
+                print("Game over!")
+                sys.exit(1)
+
         # on set la couleur a noir
         screen.fill("black")
 
@@ -54,6 +60,8 @@ def main():
 
         # on refresh le screen
         pygame.display.flip()
+
+
 
 if __name__ == "__main__":
         main()
